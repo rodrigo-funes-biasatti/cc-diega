@@ -1,0 +1,1 @@
+export const USDSalary = 3500;
