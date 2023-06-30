@@ -12,3 +12,15 @@ a {
     color: rgb(56, 190, 199);
     text-shadow: 0px 0px 9px rgba(56,190,199,0.78);
 }
+
+.section_chips {
+    max-width: 800px;
+    max-height: fit-content;
+    padding: 10px 5px;
+    border: 1.5px rgb(255, 255, 255, 0.5) solid;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}

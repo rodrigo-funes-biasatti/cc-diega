@@ -1,19 +1,15 @@
-export interface Currency {
-    casa: CurrencyData;
+export interface CurrencyResponse {
+    compra: number;
+    venta: number;
+    fecha: string;
+    variacion: string;
+    classVariacion: string;
+    valorCierreAnt: number;
 }
 
-export interface CurrencyData {
-    compra: string;
-    venta: string;
-    agencia: string;
-    nombre: string;
-    variacion?: string;
-    ventaCero?: string;
-    decimales?: string;
-    mejorCompra?: string;
-    mejorVenta?: string;
-    fecha?: string;
-    recorrido?: string;
-    afluencia?: object;
-    observaciones?: object;
+export interface Currency {
+    name: string | undefined,
+    label: string | undefined,
+    endpoint: string | undefined,
+    currencyResponse: CurrencyResponse | null | undefined
 }
