@@ -6,13 +6,6 @@ import { MateContext } from './components/contexts/MateContext'
 import { Mate } from './types/Mate'
 import { useState } from 'react'
 
-export const metadata = {
-  title: 'Foreing salary',
-  description: 'Calculá el sueldo de tu amigo que trabaja para el exterior'
-}
-
-
-
 export default function RootLayout({
   children,
 }: {
