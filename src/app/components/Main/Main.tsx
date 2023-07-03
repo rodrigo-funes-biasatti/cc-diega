@@ -1,21 +1,24 @@
 'use client'
 
-import { useEffect, useState } from 'react';
-import styles from './Header.module.css';
-import { Currency, CurrencyResponse } from '../types/Currency';
-import { USDSalary } from '../constants/USDSalary';
-import ListOfChips from './ListOfChips';
+import { useContext, useEffect, useState } from 'react';
+import styles from './Main.module.css';
+import { Currency, CurrencyResponse } from '../../types/Currency';
+import { USDSalary } from '../../constants/USDSalary';
+import ListOfChips from '../../components/ListOfChips/ListOfChips';
 import Link from 'next/link';
-import ListOfCurrencys from './ListOfCurrency';
-import { TypeOfCurrencys } from '../constants/TypeOfCurrencys';
+import ListOfCurrencys from '../../components/ListOfCurrencys/ListOfCurrency';
+import { TypeOfCurrencys } from '../../constants/TypeOfCurrencys';
+import { useMateContext } from '../contexts/MateContext';
 
-export default function Header() {
+export default function Main() {
 
     const [salary, setSalary] = useState<number>(0);
     const [displaySalary, setDisplaySalary] = useState('');
     const [currentCurrency, setCurrentCurrency] = useState<Currency | undefined>(TypeOfCurrencys.find(c => c.name === 'blue'));
 
     const linkedinProfile = 'https://www.linkedin.com/in/canepadiego/';
+
+    const {mate, setMate} = useMateContext();
 
     useEffect(() => {
         let currency: Currency | undefined = TypeOfCurrencys.find(c => c.name === currentCurrency?.name);

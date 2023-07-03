@@ -1,7 +1,7 @@
 'use client'
 
-import { Currency } from "../types/Currency";
-import { TypeOfCurrencys } from '../constants/TypeOfCurrencys'
+import { Currency } from "../../types/Currency";
+import { TypeOfCurrencys } from '../../constants/TypeOfCurrencys'
 
 export default function ListOfChips({ currentCurrency, onClickButton }: { currentCurrency?: Currency, onClickButton: (event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => void }) {
     return (
