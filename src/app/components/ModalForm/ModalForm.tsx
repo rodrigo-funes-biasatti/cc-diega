@@ -1,12 +1,12 @@
 'use client'
 
 import { Mate } from "../../types/Mate";
-import { useContext, useRef } from "react";
-import { ContextMateType, MateContext, useMateContext } from "../contexts/MateContext";
+import { useRef } from "react";
+import { useMateContext } from "../contexts/MateContext";
 
 export default function ModalForm() {
 
-    const {mate, setMate} = useMateContext();
+    const { setMate } = useMateContext();
 
     const nameRef = useRef<HTMLInputElement>(null);
     const linkedinRef = useRef<HTMLInputElement>(null);
@@ -17,7 +17,7 @@ export default function ModalForm() {
 
         const newMate: Mate = {
             name: nameRef.current?.value,
-            linkedinURL: nameRef.current!.value,
+            linkedinURL: 'https://www.linkedin.com/in/' + linkedinRef.current!.value,
             salaryUSD: +salaryRef.current!.value,
             salaryARS: undefined
         }
@@ -37,7 +37,7 @@ export default function ModalForm() {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-900 text-sm font-bold mb-2">LinkedIn URL</label>
+                            <label className="block text-gray-900 text-sm font-bold mb-2">Perfil de LinkedIn</label>
                             <input ref={linkedinRef} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="linkedin" type="text" placeholder="Ingrese su URL de LinkedIn" required />
                         </div>
 
@@ -48,7 +48,7 @@ export default function ModalForm() {
 
                         <div className="flex items-center justify-center">
                             <button className="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                                Enviar
+                                Calcular 🤑
                             </button>
                         </div>
                     </form>

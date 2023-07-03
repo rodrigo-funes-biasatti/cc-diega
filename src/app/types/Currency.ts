@@ -1,6 +1,6 @@
 export interface CurrencyResponse {
-    compra: number;
-    venta: number;
+    compra: string;
+    venta: string;
     fecha: string;
     variacion: string;
     classVariacion: string;

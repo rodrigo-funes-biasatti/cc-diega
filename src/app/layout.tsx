@@ -2,9 +2,9 @@
 
 import './globals.css'
 import Header from './components/Header/Header'
-import { ContextMateType, MateContext } from './components/contexts/MateContext'
+import { MateContext } from './components/contexts/MateContext'
 import { Mate } from './types/Mate'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export const metadata = {
   title: 'Foreing salary',
@@ -21,14 +21,10 @@ export default function RootLayout({
 
   const [mate, setMate] = useState<Mate>();
 
-  useEffect(() => {
-    console.log({mate})
-  })
-
   return (
     <html lang="en">
       <body>
-        <MateContext.Provider value={{mate, setMate}}>
+        <MateContext.Provider value={{ mate, setMate }}>
           <Header />
           {children}
         </MateContext.Provider>

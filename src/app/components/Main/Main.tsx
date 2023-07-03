@@ -1,36 +1,25 @@
 'use client'
 
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Main.module.css';
 import { Currency, CurrencyResponse } from '../../types/Currency';
-import { USDSalary } from '../../constants/USDSalary';
 import ListOfChips from '../../components/ListOfChips/ListOfChips';
 import Link from 'next/link';
 import ListOfCurrencys from '../../components/ListOfCurrencys/ListOfCurrency';
 import { TypeOfCurrencys } from '../../constants/TypeOfCurrencys';
 import { useMateContext } from '../contexts/MateContext';
+import { Mate } from '@/app/types/Mate';
 
 export default function Main() {
 
-    const [salary, setSalary] = useState<number>(0);
-    const [displaySalary, setDisplaySalary] = useState('');
-    const [currentCurrency, setCurrentCurrency] = useState<Currency | undefined>(TypeOfCurrencys.find(c => c.name === 'blue'));
-
-    const linkedinProfile = 'https://www.linkedin.com/in/canepadiego/';
-
-    const {mate, setMate} = useMateContext();
+    const [displaySalary, setDisplaySalary] = useState<string>();
+    const [selectedCurrency, setSelectedCurrency] = useState<Currency | undefined>(TypeOfCurrencys.find(c => c.name === 'blue'));
+    const { mate, setMate } = useMateContext();
 
     useEffect(() => {
-        let currency: Currency | undefined = TypeOfCurrencys.find(c => c.name === currentCurrency?.name);
+        const currency: Currency | undefined = TypeOfCurrencys.find(c => c.name === selectedCurrency?.name);
         fetchCurrency(currency);
     }, []);
-
-    useEffect(() => {
-        setDisplaySalary(new Intl.NumberFormat('es-AR', {
-            style: 'currency',
-            currency: 'ARS'
-        }).format(salary))
-    }, [salary]);
 
     const fetchCurrency = (currency: Currency | undefined) => {
         fetch(`https://mercados.ambito.com/${currency?.endpoint}/variacion`)
@@ -39,41 +28,48 @@ export default function Main() {
                 if (!data) {
                     throw new Error('Data is empty');
                 }
-                currency = { ...currency, currencyResponse: data } as Currency;
-                const newSalary = parseFloat(currency.currencyResponse?.venta?.toString() || '') * USDSalary;
-
-                setSalary(newSalary);
-                console.log('Ejecuto fetch')
-                setCurrentCurrency(currency);
+                console.log({mate})
+                const newCurrency = {...currency, currencyResponse: data as CurrencyResponse} as Currency;
+                setSelectedCurrency(newCurrency)
+                setNewSalary(newCurrency);
             })
             .catch(() => { throw new Error('Error while fetching') });
+    }
+
+    const setNewSalary = (currency: Currency) => {
+        console.log({ current: currency })
+        const salary = parseFloat(currency?.currencyResponse?.venta || '0') * (mate?.salaryUSD || 0);
+        setMate({ ...mate, salaryARS: salary } as Mate)
+        setDisplaySalary(new Intl.NumberFormat('es-AR', {
+            style: 'currency',
+            currency: 'ARS'
+        }).format(salary));
     }
 
     const handleClickButton = (event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => {
         const currency = TypeOfCurrencys.find(c => c.label === event.currentTarget.textContent);
         fetchCurrency(currency);
-        console.log("Click on button: " + event.currentTarget.textContent);
     }
 
     return (
         <>
             <section className={styles.section}>
                 <div className='flex justify-center m-10'>
-                    <p className='text-3xl font-sans'>En este momento, el sueldo de la <Link className='underline' href={linkedinProfile}><strong>Diega</strong></Link> es de:</p>
+                    <p className='text-3xl font-sans'>En este momento, el sueldo de la <Link target='_blank' className='underline' href={mate?.linkedinURL || ''}><strong>{mate?.name || ''}</strong></Link> es de:</p>
                 </div>
                 <div className='flex justify-center '>
                     <p className='text-green-500 text-5xl'>
                         <strong>
-                            ≈ {displaySalary} ARS
+                            ≈ {displaySalary || 0} ARS
                         </strong>
                     </p>
                 </div>
                 <div className="flex justify-end text-xs mx-5 my-0">
-                    <p className='italic'>({currentCurrency?.label})</p>
+                    <p className='italic'>({selectedCurrency?.label})</p>
                 </div>
             </section>
             <section className={styles.section_chips}>
-                <ListOfChips currentCurrency={currentCurrency} onClickButton={handleClickButton} />
+                <ListOfChips selectedCurrency={selectedCurrency} onClickButton={handleClickButton} />
             </section>
             <section className={styles.section_chips}>
                 <ListOfCurrencys />
