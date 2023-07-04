@@ -54,23 +54,23 @@ export default function Main() {
         <>
             <section className={styles.section}>
                 <div className='flex justify-center m-10'>
-                    <p className='text-3xl font-sans'>En este momento, el sueldo de la <a target='_blank' className='underline linkedin' href={mate?.linkedinURL || ''}><strong>{mate?.name || ''}</strong></a> es de:</p>
+                    <p className='md:text-3xl text-2xl font-sans'>En este momento, el sueldo de <a target='_blank' className='underline' href={mate?.linkedinURL || ''}><strong>{mate?.name || ''}</strong></a> es de:</p>
                 </div>
                 <div className='flex justify-center '>
-                    <p className='text-green-500 text-5xl'>
+                    <p className='text-green-500 md:text-5xl text-3xl'>
                         <strong>
                             ≈ {displaySalary || 0} ARS
                         </strong>
                     </p>
                 </div>
-                <div className="flex justify-end text-xs mx-5 my-0">
+                <div className="flex justify-end text-xs mx-5 md:my-0 my-5">
                     <p className='italic'>({selectedCurrency?.label})</p>
                 </div>
             </section>
             <section className={styles.section_chips}>
                 <ListOfChips selectedCurrency={selectedCurrency} onClickButton={handleClickButton} />
             </section>
-            <section className={styles.section_chips}>
+            <section className={`${styles.section_currencys}`}>
                 <ListOfCurrencys />
             </section>
         </>

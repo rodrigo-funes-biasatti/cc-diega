@@ -27,8 +27,8 @@ export default function ModalForm() {
 
     return (
         <>
-            <section className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-90">
-                <div className="bg-gray-600 rounded-lg p-6 w-1/3 transform scale-0 opacity-0 transition-all duration-500 ease-in-out scale-100 opacity-100"> 
+            <section className="fixed inset-0 my-10 flex items-center justify-center bg-black bg-opacity-90">
+                <div className="md:w-1/3 bg-gray-600 rounded-lg p-6 w-100 transform scale-0 opacity-0 transition-all duration-500 ease-in-out scale-100 opacity-100"> 
                     <h1 className="text-3xl font-semibold mb-4 text-center">Calculador de sueldos</h1>
                     <p className="text-sm mb-4 text-center italic">Calculale el sueldo a tu amigo que labura para el exterior!</p>
                     <form className="max-w-md mx-auto" onSubmit={handleSubmit}>

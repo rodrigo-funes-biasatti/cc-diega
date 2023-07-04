@@ -25,3 +25,25 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.section_currencys {
+    max-width: 800px;
+    max-height: fit-content;
+    padding: 10px 5px;
+    border: 1.5px rgb(255, 255, 255, 0.5) solid;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+@media screen and (max-width: 900px) {
+    .section_currencys {
+        display: grid;
+        grid-template-columns: auto;
+    }
+    .section_currencys * {
+        margin: 10px;
+    }
+}

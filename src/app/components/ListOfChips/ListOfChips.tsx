@@ -5,7 +5,7 @@ import { TypeOfCurrencys } from '../../constants/TypeOfCurrencys'
 
 export default function ListOfChips({ selectedCurrency: selectedCurrency, onClickButton }: { selectedCurrency?: Currency, onClickButton: (event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => void }) {
     return (
-        <ul className="grid w-90 gap-6 md:grid-cols-4">
+        <ul className="grid w-90 md:gap-6 md:grid-cols-4 gap-1 grid-cols-3">
             {TypeOfCurrencys.map((type: Currency) => (
                 <li key={type.name}>
                     <input checked={selectedCurrency?.name === type.name} type="radio" name="hosting" value={type.label} className="hidden peer" readOnly/>
