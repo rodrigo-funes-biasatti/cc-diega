@@ -37,7 +37,6 @@ export default function Main() {
     }
 
     const setNewSalary = (currency: Currency) => {
-        console.log({ current: currency })
         const salary = parseFloat(currency?.currencyResponse?.venta || '0') * (mate?.salaryUSD || 0);
         setMate({ ...mate, salaryARS: salary } as Mate)
         setDisplaySalary(new Intl.NumberFormat('es-AR', {
@@ -55,7 +54,7 @@ export default function Main() {
         <>
             <section className={styles.section}>
                 <div className='flex justify-center m-10'>
-                    <p className='text-3xl font-sans'>En este momento, el sueldo de la <Link target='_blank' className='underline' href={mate?.linkedinURL || ''}><strong>{mate?.name || ''}</strong></Link> es de:</p>
+                    <p className='text-3xl font-sans'>En este momento, el sueldo de la <a target='_blank' className='underline linkedin' href={mate?.linkedinURL || ''}><strong>{mate?.name || ''}</strong></a> es de:</p>
                 </div>
                 <div className='flex justify-center '>
                     <p className='text-green-500 text-5xl'>

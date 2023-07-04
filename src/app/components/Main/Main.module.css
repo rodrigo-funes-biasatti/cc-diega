@@ -7,10 +7,11 @@
     margin-top: 10px;
 }
 
-a {
+.linkedin {
     background-color: transparent;
     color: rgb(56, 190, 199);
     text-shadow: 0px 0px 9px rgba(56,190,199,0.78);
+    text-decoration: underline;
 }
 
 .section_chips {
