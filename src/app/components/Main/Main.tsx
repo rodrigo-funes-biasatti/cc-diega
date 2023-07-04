@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import styles from './Main.module.css';
 import { Currency, CurrencyResponse } from '../../types/Currency';
 import ListOfChips from '../../components/ListOfChips/ListOfChips';
-import Link from 'next/link';
 import ListOfCurrencys from '../../components/ListOfCurrencys/ListOfCurrency';
 import { TypeOfCurrencys } from '../../constants/TypeOfCurrencys';
 import { useMateContext } from '../contexts/MateContext';
@@ -28,7 +27,6 @@ export default function Main() {
                 if (!data) {
                     throw new Error('Data is empty');
                 }
-                console.log({mate})
                 const newCurrency = {...currency, currencyResponse: data as CurrencyResponse} as Currency;
                 setSelectedCurrency(newCurrency)
                 setNewSalary(newCurrency);
